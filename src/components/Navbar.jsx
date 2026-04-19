@@ -21,12 +21,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <img
-              src="/logo.png"
-              alt="HandMeDino"
-              className="h-11 w-auto transition-transform group-hover:scale-105"
-            />
+          <Link to="/" className="flex items-center gap-2 group">
+            <span className="text-3xl transition-transform group-hover:scale-110 select-none">🦕</span>
+            <div className="leading-tight">
+              <span className="font-display font-bold text-xl text-brand-teal">HandMe</span>
+              <span className="font-display font-bold text-xl text-brand-green-dark">Dino</span>
+            </div>
           </Link>
 
           {/* Desktop nav */}

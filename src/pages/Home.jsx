@@ -118,14 +118,18 @@ export default function Home() {
         <Motifs />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
 
-          {/* Logo */}
-          <div className="flex justify-center mb-6">
-            <img
-              src="/logo.png"
-              alt="HandMeDino"
-              className="h-52 md:h-64 w-auto animate-float drop-shadow-lg"
-            />
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white border border-brand-teal/30 text-brand-teal px-5 py-2 rounded-full text-sm font-semibold shadow-sm mb-8">
+            <span>🦕</span>
+            HandMeDino · San Diego, CA
           </div>
+
+          {/* Headline */}
+          <h1 className="font-display font-bold text-6xl md:text-7xl text-brand-dark leading-tight mb-4">
+            Easy Secondhand
+            <br />
+            <span className="text-gradient-teal">Baby Gear.</span>
+          </h1>
 
           {/* Tagline */}
           <p className="font-display text-2xl md:text-3xl text-brand-beige font-semibold italic mb-6">

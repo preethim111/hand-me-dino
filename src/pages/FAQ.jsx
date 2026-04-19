@@ -256,9 +256,7 @@ export default function FAQ() {
       {/* Hero */}
       <section className="bg-brand-teal text-white py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <div className="flex justify-center mb-4">
-            <img src="/logo.png" alt="HandMeDino" className="h-28 w-auto" />
-          </div>
+          <div className="text-5xl mb-4 select-none">🦕</div>
           <h1 className="font-display font-bold text-5xl mb-4">
             Frequently Asked Questions
           </h1>

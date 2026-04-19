@@ -9,8 +9,12 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="mb-4">
-              <img src="/logo.png" alt="HandMeDino" className="h-20 w-auto" />
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-4xl select-none">🦕</span>
+              <div>
+                <span className="font-display font-bold text-2xl text-white">HandMe</span>
+                <span className="font-display font-bold text-2xl text-brand-green">Dino</span>
+              </div>
             </div>
             <p className="text-teal-200 text-sm leading-relaxed max-w-xs mb-2">
               Easy secondhand baby gear.
