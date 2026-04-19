@@ -12,16 +12,13 @@
   - 🧸 **90% of toys** are made from plastic *(Beyond Plastics)*
   - 🌡️  Ocean temperatures have risen **+2°F over the last 50 years** *(CalCOFI Long-Term Data)*                                                                                                             
                                                                                                                                                                                                             
-  Parents spend hundreds or thousands of dollars on gear their baby uses for three months. There's no good reason that gear shouldn't go to the next family.                                     
-                                                                                                                                                                                                            
-  ---                                                                                                                                                                                                       
+  Parents spend hundreds or thousands of dollars on gear their baby uses for three months. There's no good reason that gear shouldn't go to the next family.                                                                                                                                                                                                                                           
                   
   ## What We Built
   **HandMeDino** is a circular economy marketplace for baby products, built for San Diego families.                                                                                                         
    
 Parents can **buy** certified-clean gear at a fraction of retail price, or **sell** the items their baby has outgrown. Every item is picked up for free, professionally cleaned, safety-inspected, and relisted for the next family.
-                                                                                                                                                                                                            
-  ---             
+                                                                                                                                                                                                                        
   ## How It Works                                                                                                                                                                                           
    
   ### Buying                                                                                                                                                                                                
@@ -38,30 +35,19 @@ Parents can **buy** certified-clean gear at a fraction of retail price, or **sel
   - Rejects non-baby items automatically
   - Flags structural damage, broken parts, or unsafe conditions
   - Estimates condition and fair market value                                                                                                                                                               
-                  
-  ---                                                                                                                                                                                                       
+                                                                                                                                                                                                     
                   
   ## Age Bundles                                                                                                                                                                                            
    
-  Don't want to shop item by item? We offer curated bundles matched to your baby's current phase with one flat price, delivered to your door.                                                                  
-                  
-  | Bundle | Age | Price |                                                                                                                                                                                  
-  |---|---|---|   
-  | 🛏️  Newborn Nest | 0–3 months | $219 |                                                                                                                                                                   
-  | 🧸 Little Explorer | 3–6 months | $189 |
-  | 🪑 Growing Adventurer | 6–9 months | $149 |                                                                                                                                                             
-  | 🚶 First Steps | 9–12 months | $159 |                                                                                                                                                                   
-                                                                                                                                                                                                            
+  Don't want to shop item by item? We offer curated bundles matched to your baby's current phase with one flat price, delivered to your door.                                                                                                                                                                                                                                           
   Each bundle includes 5–6 items covering the essential gear for that stage.                                                                                                                                
-                  
-  ---                                                                                                                                                                                                       
+                                                             
                   
   ## HandMeDino+ Membership
   **$10/month** - free shipping on every order. That's it.                                                                                                                                                  
    
 Every order (subscription or not) already includes our professional cleaning and sanitization service. HandMeDino+ simply removes the shipping fee on top.                                              
-                  
-  ---                                                                                                                                                                                                       
+                                                                                                                                                                                                     
                   
   ## Certification Process
   Every item earns the **HandMeDino Certified** badge only after passing our 6-step process:                                                                                                                
@@ -71,17 +57,14 @@ Every order (subscription or not) already includes our professional cleaning and
   3. **Sanitization** — hospital-grade, EPA-registered, baby-safe disinfectants                                                                                                                             
   4. **Repair & Renew** — minor fixes and part replacements where needed                                                                                                                                    
   5. **Certification** — 25-point quality and safety sign-off                                                                                                                                               
-  6. **Re-Delivery** — shipped to the next family                                                                                                                                                           
-                                                                                                                                                                                                            
-  ---                                                                                                                                                                                                       
+  6. **Re-Delivery** — shipped to the next family                                                                                                                                                                                                      
                                                                                                                                                                                                             
   ## Why It Matters
   Baby products are the fast fashion of the parenting world — mass-produced, used briefly, and discarded. HandMeDino keeps them in circulation. Each item that passes through our platform is one less piece
    of plastic heading to a landfill or waterway.
                                                                                                                                                                                                             
   We never landfill items we can recycle. Items that don't pass inspection are either returned to the seller or responsibly recycled with their permission.                                                 
-   
-  ---                                                                                                                                                                                                       
+                                                                                                                                                                                                         
                   
   ## Tech Stack
   | Layer | Technology |                                                                                                                                                                                    
@@ -92,8 +75,7 @@ Every order (subscription or not) already includes our professional cleaning and
   | Icons | Lucide React |                                                                                                                                                                                  
   | AI Vision | Google Gemini 2.0 Flash |
   | Animations | CSS keyframes + IntersectionObserver |                                                                                                                                                     
-                                                                                                                                                                                                            
-  ---
+                                                                                                                                                                                                           
                                                                                                                                                                                                             
   ## Running Locally
   ```bash
