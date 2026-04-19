@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #f6f0e2;
+    color: #2d4a49;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+
+  .text-gradient-teal {
+    background: linear-gradient(135deg, #4e9895, #3a7472);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #8aae4f, #a6c96e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-bg {
+    background: radial-gradient(ellipse at 60% 40%, #edf7f6 0%, #f6f0e2 55%, #f2f8e8 100%);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-brand-teal text-white px-6 py-3 rounded-xl font-semibold hover:bg-brand-teal-dark transition-colors;
+  }
+
+  .btn-outline {
+    @apply border-2 border-brand-teal text-brand-teal px-6 py-3 rounded-xl font-semibold hover:bg-brand-teal-pale transition-colors;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #f6f0e2; }
+::-webkit-scrollbar-thumb { background: #4e9895; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a7472; }
+
+/* Motif floating helpers */
+.motif {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
