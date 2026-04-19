@@ -40,8 +40,8 @@ const bundles = [
     emoji: '🛏️',
     color: 'bg-brand-teal-pale border-brand-teal/30',
     headerBg: 'bg-brand-teal',
-    price: 89,
-    savings: 620,
+    price: 219,
+    savings: 410,
     items: [
       '🛏️  Bassinet',
       '🍼  4× Baby Bottles',
@@ -57,8 +57,8 @@ const bundles = [
     emoji: '🧸',
     color: 'bg-brand-green-pale border-brand-green/30',
     headerBg: 'bg-brand-green-dark',
-    price: 79,
-    savings: 490,
+    price: 189,
+    savings: 310,
     items: [
       '🤸  Activity Gym',
       '🎒  Baby Carrier',
@@ -73,8 +73,8 @@ const bundles = [
     emoji: '🪑',
     color: 'bg-amber-50 border-brand-beige/40',
     headerBg: 'bg-brand-beige',
-    price: 99,
-    savings: 730,
+    price: 149,
+    savings: 230,
     items: [
       '🪑  High Chair',
       '🛁  Baby Bath Seat',
@@ -89,8 +89,8 @@ const bundles = [
     emoji: '🚶',
     color: 'bg-rose-50 border-rose-200/50',
     headerBg: 'bg-rose-400',
-    price: 109,
-    savings: 810,
+    price: 159,
+    savings: 260,
     items: [
       '🚶  Push Walker',
       '🎭  Play Yard / Gate',
@@ -105,7 +105,7 @@ const bundles = [
 const steps = [
   { icon:'🛒', title:'Browse & Select', desc:'Pick the bundle that matches your baby\'s age. We bring it to your door.' },
   { icon:'✨', title:'Arrive Spotless',  desc:'Every item is professionally cleaned and safety-checked before delivery.' },
-  { icon:'♻️', title:'Return & Renew',  desc:'Outgrown it? Schedule a free pickup. Items go to the next family.' },
+  { icon:'💚', title:'Sell It Back',  desc:'Outgrown it? List your item in minutes. We pick it up free and find it a new family.' },
 ]
 
 export default function Home() {
@@ -138,8 +138,8 @@ export default function Home() {
 
           {/* Sub */}
           <p className="text-brand-teal-dark text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            Rent, borrow, or buy certified-clean baby products for every stage of your little one's first year.
-            We deliver. You enjoy. We take back and renew. No waste, no clutter, no stress.
+            Shop certified-clean, professionally inspected baby gear for every stage of your little one's first year.
+            We deliver. You enjoy. Sell it back when they outgrow it. No waste, no clutter, no stress.
           </p>
 
           {/* CTAs */}
@@ -196,8 +196,8 @@ export default function Home() {
               Everything They Need,<br />For Every Phase.
             </h2>
             <p className="text-brand-teal-dark max-w-xl mx-auto leading-relaxed">
-              Curated sets of cleaned, certified gear delivered right to your door.
-              Return when they outgrow it — we take care of the rest.
+              Curated sets of cleaned, certified gear — one flat price, delivered to your door.
+              Sell back what they outgrow and we find it a new home.
             </p>
           </div>
 
@@ -233,7 +233,7 @@ export default function Home() {
                   <div className="bg-white/80 rounded-2xl p-4 mb-4">
                     <div className="flex items-end gap-1 mb-1">
                       <span className="font-display font-bold text-3xl text-brand-dark">${b.price}</span>
-                      <span className="text-brand-teal-dark text-sm mb-1 font-medium">/month</span>
+                      <span className="text-brand-teal-dark text-sm mb-1 font-medium">one-time</span>
                     </div>
                     <div className="text-xs text-brand-beige font-semibold">
                       Save ~${b.savings} vs. buying new

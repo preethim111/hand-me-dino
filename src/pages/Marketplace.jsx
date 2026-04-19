@@ -6,20 +6,6 @@ import { listings, categories } from '../data/mockListings'
 const conditions  = ['All', 'Like New', 'Excellent', 'Good', 'Fair']
 const sortOptions = ['Newest', 'Price: Low to High', 'Price: High to Low', 'Most Saved']
 
-function TypeBadge({ type }) {
-  const m = {
-    buy:    { label:'Buy',    cls:'bg-brand-teal-pale   text-brand-teal    border-brand-teal/30'  },
-    rent:   { label:'Rent',   cls:'bg-brand-green-pale  text-brand-green-dark border-brand-green/30'},
-    borrow: { label:'Borrow', cls:'bg-amber-50           text-amber-700     border-amber-200'     },
-  }
-  const { label, cls } = m[type]
-  return (
-    <span className={`text-xs font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide ${cls}`}>
-      {label}
-    </span>
-  )
-}
-
 function ConditionDot({ condition }) {
   const c = {
     'Like New': 'bg-brand-teal',
@@ -35,6 +21,25 @@ function ConditionDot({ condition }) {
   )
 }
 
+function ProductImage({ listing, className, fallbackClass }) {
+  const [errored, setErrored] = useState(false)
+  if (!errored && listing.imageUrl) {
+    return (
+      <img
+        src={listing.imageUrl}
+        alt={listing.title}
+        className={className}
+        onError={() => setErrored(true)}
+      />
+    )
+  }
+  return (
+    <div className={`${listing.bgColor} ${fallbackClass} flex items-center justify-center`}>
+      <span className="text-7xl">{listing.emoji}</span>
+    </div>
+  )
+}
+
 function ProductModal({ listing, onClose }) {
   if (!listing) return null
   return (
@@ -43,14 +48,18 @@ function ProductModal({ listing, onClose }) {
         className="bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden animate-scaleIn"
         onClick={e => e.stopPropagation()}
       >
-        <div className={`${listing.bgColor} h-52 flex items-center justify-center relative`}>
-          <span className="text-9xl">{listing.emoji}</span>
+        <div className="relative h-56 overflow-hidden">
+          <ProductImage
+            listing={listing}
+            className="w-full h-full object-cover"
+            fallbackClass="w-full h-full"
+          />
           {listing.certified && (
             <div className="absolute top-4 left-4 bg-brand-teal text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
               <CheckCircle size={13} /> Certified
             </div>
           )}
-          <button onClick={onClose} className="absolute top-4 right-4 bg-white/80 hover:bg-white p-2 rounded-full transition-colors">
+          <button onClick={onClose} className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full transition-colors shadow-sm">
             <X size={18} />
           </button>
         </div>
@@ -60,22 +69,15 @@ function ProductModal({ listing, onClose }) {
             <div>
               <h2 className="font-display font-bold text-xl text-brand-dark leading-snug">{listing.title}</h2>
               <div className="flex items-center gap-3 mt-2">
-                <TypeBadge type={listing.type} />
+                <span className="text-xs font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide bg-brand-teal-pale text-brand-teal border-brand-teal/30">
+                  Buy
+                </span>
                 <ConditionDot condition={listing.condition} />
               </div>
             </div>
             <div className="text-right">
-              {listing.type === 'borrow' ? (
-                <span className="text-2xl font-bold text-amber-600">Free</span>
-              ) : (
-                <>
-                  <span className="text-2xl font-bold text-brand-dark">
-                    ${listing.price}
-                    {listing.priceUnit && <span className="text-base font-normal text-brand-teal-dark">/{listing.priceUnit}</span>}
-                  </span>
-                  <div className="text-xs text-gray-400 line-through">${listing.originalPrice} retail</div>
-                </>
-              )}
+              <span className="text-2xl font-bold text-brand-dark">${listing.price}</span>
+              <div className="text-xs text-gray-400 line-through">${listing.originalPrice} retail</div>
             </div>
           </div>
 
@@ -95,7 +97,7 @@ function ProductModal({ listing, onClose }) {
           </div>
 
           <div className="flex items-center gap-2 mb-5">
-            <div className="text-2xl">{listing.emoji}</div>
+            <span className="text-2xl">{listing.emoji}</span>
             <div>
               <div className="font-semibold text-brand-dark text-sm">{listing.seller}</div>
               <div className="flex items-center gap-1">
@@ -116,7 +118,7 @@ function ProductModal({ listing, onClose }) {
 
           <div className="flex gap-3">
             <button className="flex-1 bg-brand-teal text-white py-3 rounded-xl font-bold hover:bg-brand-teal-dark transition-colors">
-              {listing.type === 'buy' ? '🛒 Buy Now' : listing.type === 'rent' ? '📅 Rent Now' : '🤝 Request Borrow'}
+              🛒 Buy Now
             </button>
             <button className="p-3 border-2 border-gray-200 rounded-xl hover:border-red-400 hover:text-red-500 transition-colors">
               <Heart size={20} />
@@ -129,13 +131,26 @@ function ProductModal({ listing, onClose }) {
 }
 
 function ProductCard({ listing, onClick }) {
+  const [imgErrored, setImgErrored] = useState(false)
+
   return (
     <div
       className="bg-white rounded-2xl shadow-sm border border-brand-teal/10 overflow-hidden card-hover flex flex-col cursor-pointer"
       onClick={() => onClick(listing)}
     >
-      <div className={`${listing.bgColor} h-44 flex items-center justify-center relative`}>
-        <span className="text-7xl">{listing.emoji}</span>
+      <div className="relative h-44 overflow-hidden">
+        {!imgErrored && listing.imageUrl ? (
+          <img
+            src={listing.imageUrl}
+            alt={listing.title}
+            className="w-full h-full object-cover"
+            onError={() => setImgErrored(true)}
+          />
+        ) : (
+          <div className={`${listing.bgColor} w-full h-full flex items-center justify-center`}>
+            <span className="text-7xl">{listing.emoji}</span>
+          </div>
+        )}
         {listing.certified && (
           <span className="absolute top-3 left-3 bg-brand-teal text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
             <CheckCircle size={10} /> Certified
@@ -143,7 +158,7 @@ function ProductCard({ listing, onClick }) {
         )}
         <button
           onClick={e => e.stopPropagation()}
-          className="absolute top-3 right-3 bg-white/80 hover:bg-white p-1.5 rounded-full transition-colors"
+          className="absolute top-3 right-3 bg-white/90 hover:bg-white p-1.5 rounded-full transition-colors shadow-sm"
         >
           <Heart size={14} className="text-gray-400" />
         </button>
@@ -151,7 +166,9 @@ function ProductCard({ listing, onClick }) {
 
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-2">
-          <TypeBadge type={listing.type} />
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide bg-brand-teal-pale text-brand-teal border-brand-teal/30">
+            Buy
+          </span>
           <ConditionDot condition={listing.condition} />
         </div>
         <h3 className="font-semibold text-brand-dark text-sm leading-snug mb-1">{listing.title}</h3>
@@ -160,16 +177,7 @@ function ProductCard({ listing, onClick }) {
           <MapPin size={11} /> {listing.location} · {listing.listed}
         </div>
         <div className="flex items-center justify-between pt-2 border-t border-brand-cream">
-          <div>
-            {listing.type === 'borrow' ? (
-              <span className="text-base font-bold text-amber-600">Free Borrow</span>
-            ) : (
-              <span className="text-base font-bold text-brand-dark">
-                ${listing.price}
-                {listing.priceUnit && <span className="text-sm font-normal text-brand-teal-dark">/{listing.priceUnit}</span>}
-              </span>
-            )}
-          </div>
+          <span className="text-base font-bold text-brand-dark">${listing.price}</span>
           <span className="text-xs text-brand-teal font-medium">🌿 {listing.plasticSaved}</span>
         </div>
       </div>
@@ -179,7 +187,6 @@ function ProductCard({ listing, onClick }) {
 
 export default function Marketplace() {
   const [search,      setSearch]      = useState('')
-  const [typeFilter,  setTypeFilter]  = useState('all')
   const [catFilter,   setCatFilter]   = useState('All')
   const [condFilter,  setCondFilter]  = useState('All')
   const [sort,        setSort]        = useState('Newest')
@@ -193,14 +200,13 @@ export default function Marketplace() {
         l.title.toLowerCase().includes(search.toLowerCase()) ||
         l.category.toLowerCase().includes(search.toLowerCase())
       )
-    if (typeFilter !== 'all') r = r.filter(l => l.type === typeFilter)
     if (catFilter  !== 'All') r = r.filter(l => l.category === catFilter)
     if (condFilter !== 'All') r = r.filter(l => l.condition === condFilter)
-    if (sort === 'Price: Low to High')  r.sort((a,b) => (a.price||0)-(b.price||0))
-    if (sort === 'Price: High to Low')  r.sort((a,b) => (b.price||0)-(a.price||0))
-    if (sort === 'Most Saved')          r.sort((a,b) => b.saved-a.saved)
+    if (sort === 'Price: Low to High')  r.sort((a,b) => a.price - b.price)
+    if (sort === 'Price: High to Low')  r.sort((a,b) => b.price - a.price)
+    if (sort === 'Most Saved')          r.sort((a,b) => b.saved - a.saved)
     return r
-  }, [search, typeFilter, catFilter, condFilter, sort])
+  }, [search, catFilter, condFilter, sort])
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -213,7 +219,7 @@ export default function Marketplace() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <h1 className="font-display font-bold text-4xl text-brand-dark">Baby Gear, Renewed.</h1>
-            <p className="text-brand-teal-dark mt-1">{listings.length} certified listings · All professionally cleaned</p>
+            <p className="text-brand-teal-dark mt-1">{listings.length} certified listings · All professionally cleaned &amp; inspected</p>
           </div>
           <Link
             to="/sell"
@@ -233,23 +239,6 @@ export default function Marketplace() {
         <Link to="/sell" className="flex-shrink-0 bg-brand-teal text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-teal-dark transition-colors">
           List Your Items →
         </Link>
-      </div>
-
-      {/* Type pills */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {['all','buy','rent','borrow'].map(t => (
-          <button
-            key={t}
-            onClick={() => setTypeFilter(t)}
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all border ${
-              typeFilter === t
-                ? 'bg-brand-teal text-white border-brand-teal shadow-sm'
-                : 'bg-white text-brand-dark border-brand-teal/20 hover:border-brand-teal hover:text-brand-teal'
-            }`}
-          >
-            {t === 'all' ? '🔍 All' : t === 'buy' ? '🛒 Buy' : t === 'rent' ? '📅 Rent' : '🤝 Borrow'}
-          </button>
-        ))}
       </div>
 
       {/* Search + filter bar */}
@@ -346,9 +335,9 @@ export default function Marketplace() {
         <p className="text-sm text-brand-teal-dark">
           Showing <span className="font-semibold text-brand-dark">{filtered.length}</span> of {listings.length} listings
         </p>
-        {(search || typeFilter !== 'all' || catFilter !== 'All' || condFilter !== 'All') && (
+        {(search || catFilter !== 'All' || condFilter !== 'All') && (
           <button
-            onClick={() => { setSearch(''); setTypeFilter('all'); setCatFilter('All'); setCondFilter('All') }}
+            onClick={() => { setSearch(''); setCatFilter('All'); setCondFilter('All') }}
             className="text-xs text-red-500 font-semibold flex items-center gap-1 hover:underline"
           >
             <X size={13} /> Clear all
@@ -367,7 +356,7 @@ export default function Marketplace() {
           <h3 className="font-display font-bold text-xl text-brand-dark mb-2">No listings found</h3>
           <p className="text-brand-teal-dark mb-6">Try adjusting your filters or search terms.</p>
           <button
-            onClick={() => { setSearch(''); setTypeFilter('all'); setCatFilter('All'); setCondFilter('All') }}
+            onClick={() => { setSearch(''); setCatFilter('All'); setCondFilter('All') }}
             className="bg-brand-teal text-white px-6 py-3 rounded-xl font-semibold hover:bg-brand-teal-dark transition-colors"
           >
             Clear All Filters
